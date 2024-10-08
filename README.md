@@ -1,4 +1,32 @@
-# AngularPetWorkshop0
+# Angular Pet Workshop
+
+-How was this built?
+
+npm install -g @angular/cli
+ng new first-app --no-standalone
+
+ng generate service cars
+
+ng generate module cars
+ng generate component cars/add
+ng generate component cars/view
+ng generate component cars/list
+ng generate component cars/edit
+
+ng generate module layout
+ng generate component layout/menu
+
+Order of Build:
+
+- run above `ng serve`
+- arrange app-routing.module.ts
+- check all pets AND add pet view
+- create model folder with a pet interface
+- create data folder with an array of Pets!
+- add pets array to pets.service.ts, importing - the pet interface, pets data collection
+- list component: import car service into here and fill a Pets array property with it . Setup constructor correctly
+- create add in service to add to pets array and - make id increment
+- create FORM !
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
 

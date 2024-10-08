@@ -15,7 +15,6 @@ export class ViewComponent {
     private readonly petsService: PetsService,
     private readonly route: ActivatedRoute
   ) {
-    //id = this.route.snapshot.paramMap.get('id');
     this.pet = this.petsService.GetPetById(
       Number(route.snapshot.paramMap.get('id'))
     );
