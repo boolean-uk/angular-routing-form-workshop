@@ -30,6 +30,10 @@ Order of Build:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
 
+## Bootstrap
+
+You could install bootstrap but I just pulled in a CDN from [here](https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_temp_portfolio&stacked=h)
+
 ## Json Server
 
 - `npm install -g json-server`

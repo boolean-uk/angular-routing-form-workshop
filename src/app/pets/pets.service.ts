@@ -17,4 +17,7 @@ export class PetsService {
   public getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(`${environment.api}`);
   }
+  public updatePet(p: Pet): void {
+    console.log('put', p);
+  }
 }

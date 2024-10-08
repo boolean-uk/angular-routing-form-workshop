@@ -1,15 +1,10 @@
-<ul>
-  <li *ngFor="let p of pets$ | async">
-    <span id="item{{ p.id }}" class="red">{{ p.name }}</span>
-  </li>
-</ul>
-
-<table>
+<table class="table table-dark table-striped">
   <thead>
     <tr>
       <td>name</td>
       <td>description</td>
       <td>age</td>
+      <td>edit</td>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +15,9 @@
 
       <td class="red">{{ p.description }}</td>
       <td>{{ p.age }}</td>
+      <td>
+        <a routerLink="/pets/edit/{{ p.id }}">edit</a>
+      </td>
     </tr>
   </tbody>
 </table>
