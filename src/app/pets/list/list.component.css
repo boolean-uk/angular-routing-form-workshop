@@ -1,0 +1,11 @@
+table,
+tr,
+td {
+  border: 1px solid silver;
+}
+.red {
+  color: red;
+}
+#item1 {
+  color: green;
+}
