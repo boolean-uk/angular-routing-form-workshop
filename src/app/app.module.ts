@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from './layout/layout.module';
 import { PetsModule } from './pets/pets.module';
-
+import { provideHttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -16,7 +16,7 @@ import { PetsModule } from './pets/pets.module';
     LayoutModule,
     PetsModule,
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

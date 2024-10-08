@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let p of pets">
+  <li *ngFor="let p of pets$ | async">
     <span id="item{{ p.id }}" class="red">{{ p.name }}</span>
   </li>
 </ul>
@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let p of pets">
+    <tr *ngFor="let p of pets$ | async">
       <td>
         <a routerLink="/pets/{{ p.id }}">{{ p.name }}</a>
       </td>

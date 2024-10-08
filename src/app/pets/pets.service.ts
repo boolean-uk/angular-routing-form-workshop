@@ -1,22 +1,20 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Pet } from './models/pet';
 import { PETS } from '../data/pets';
-
+import { environment } from '../environment/environment';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class PetsService {
-  public pets: Pet[] = PETS;
+  private http = inject(HttpClient);
+  public AddPet(p: Pet) {}
 
-  public AddPet(p: Pet) {
-    p.id = this.pets.length + 1;
-    this.pets.push(p);
+  public GetPetById(id: number): Observable<Pet> {
+    return this.http.get<Pet>(`${environment.api}/1`);
   }
-  public GetPetById(id: number | null) {
-    const pet = this.pets.find((pet) => pet.id === id);
-    if (!pet) {
-      return null;
-    }
-    return pet;
+  public getPets(): Observable<Pet[]> {
+    return this.http.get<Pet[]>(`${environment.api}`);
   }
 }

@@ -1,4 +1,4 @@
-<div *ngIf="pet !== null">
+<div *ngIf="pet$ | async as pet">
   <h2>
     {{ pet.name }}
   </h2>

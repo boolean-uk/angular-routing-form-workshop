@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Pet } from '../models/pet';
 import { PetsService } from '../pets.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -8,9 +9,20 @@ import { PetsService } from '../pets.service';
   styleUrl: './list.component.css',
 })
 export class ListComponent {
-  pets: Pet[] = [];
-
-  constructor(private readonly petsService: PetsService) {
-    this.pets = petsService.pets;
+  pets$ = new Observable<Pet[]>();
+  ngOnInit(): void {
+    this.pets$ = this.petsService.getPets();
+    this.pets$.subscribe((pets) => {
+      pets.forEach((pet) => {
+        console.log(pet.name);
+      });
+    });
   }
+
+  constructor(private readonly petsService: PetsService) {}
+  /*
+  getPets() {
+    this.pets$ = this.petsService.getPets();
+  }
+    */
 }
