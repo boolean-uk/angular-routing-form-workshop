@@ -44,6 +44,11 @@ export class EditComponent {
     });
   }
 
+  deletePet() {
+    this.petsService.deletePetById(
+      Number(this.route.snapshot.paramMap.get('id'))
+    );
+  }
   updatePet() {
     const updatedPet: Pet = {
       id: Number(this.route.snapshot.paramMap.get('id')),

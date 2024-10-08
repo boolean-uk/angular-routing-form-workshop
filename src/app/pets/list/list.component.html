@@ -16,7 +16,10 @@
       <td class="red">{{ p.description }}</td>
       <td>{{ p.age }}</td>
       <td>
-        <a class="badge badge" routerLink="/pets/edit/{{ p.id }}">edit</a>
+        <a class="btn btn-success" routerLink="/pets/edit/{{ p.id }}">edit</a>
+        <a class="btn btn-danger" routerLink="/pets/delete/{{ p.id }}"
+          >delete</a
+        >
       </td>
     </tr>
   </tbody>

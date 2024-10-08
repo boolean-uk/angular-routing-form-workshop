@@ -14,7 +14,11 @@ export class PetsService {
       console.log('Server response:', response);
     });
   }
-
+  public deletePetById(id: number) {
+    this.http.delete(`${environment.api}/${id}`).subscribe((response) => {
+      console.log('Server response:', response);
+    });
+  }
   public GetPetById(id: number): Observable<Pet> {
     return this.http.get<Pet>(`${environment.api}/1`);
   }
