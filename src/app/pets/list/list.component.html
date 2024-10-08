@@ -4,19 +4,19 @@
       <td>name</td>
       <td>description</td>
       <td>age</td>
-      <td>edit</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let p of pets$ | async">
       <td>
-        <a routerLink="/pets/{{ p.id }}">{{ p.name }}</a>
+        <a class="badge" routerLink="/pets/{{ p.id }}">{{ p.name }}</a>
       </td>
 
       <td class="red">{{ p.description }}</td>
       <td>{{ p.age }}</td>
       <td>
-        <a routerLink="/pets/edit/{{ p.id }}">edit</a>
+        <a class="badge badge" routerLink="/pets/edit/{{ p.id }}">edit</a>
       </td>
     </tr>
   </tbody>

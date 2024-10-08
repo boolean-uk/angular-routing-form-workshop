@@ -1,22 +1,28 @@
 {
   "pets": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Lola",
-      "description": "A small pug dog",
+      "description": "A smelly pug dog",
       "age": 4
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Red",
       "description": "Fluffy black and white cat",
       "age": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Bella",
       "description": "Fluffy black cat",
       "age": 1
+    },
+    {
+      "id": 0,
+      "name": "Nigel Sibbert",
+      "description": "Fast car for a boy",
+      "age": "4"
     }
   ]
 }

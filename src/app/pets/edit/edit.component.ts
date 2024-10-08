@@ -45,7 +45,13 @@ export class EditComponent {
   }
 
   updatePet() {
-    //this.petsService.updatePet({ ...this.carForm.value, id: Number(this.id) });
+    const updatedPet: Pet = {
+      id: Number(this.route.snapshot.paramMap.get('id')),
+      name: this.petForm.value.name,
+      description: this.petForm.value.description,
+      age: this.petForm.value.age,
+    };
+    this.petsService.updatePet(updatedPet);
     this.router.navigate(['pets']);
   }
 }

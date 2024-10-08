@@ -24,12 +24,14 @@ export class AddComponent {
   }
 
   addPet(): void {
+    console.log('service addPet');
     const newPet: Pet = {
       id: 0,
       name: this.petForm.value.name,
       description: this.petForm.value.description,
       age: this.petForm.value.age,
     };
+    console.log(newPet);
     this.pservice.AddPet(newPet);
     this.petForm.reset();
   }
