@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Pet } from '../models/pet';
 import { PetsService } from '../pets.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,13 +11,9 @@ import { Observable } from 'rxjs';
 })
 export class ViewComponent {
   pet$ = new Observable<Pet>();
-
-  constructor(
-    private readonly petsService: PetsService,
-    private readonly route: ActivatedRoute
-  ) {
-    this.pet$ = this.petsService.GetPetById(
-      Number(route.snapshot.paramMap.get('id'))
-    );
+  route = inject(ActivatedRoute);
+  id: string | null = this.route.snapshot.paramMap.get('id');
+  constructor(private readonly petsService: PetsService) {
+    this.pet$ = this.petsService.GetPetById(this.id as string);
   }
 }

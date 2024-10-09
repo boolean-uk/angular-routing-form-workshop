@@ -16,17 +16,15 @@ export class EditComponent {
   petForm: FormGroup;
   router = inject(Router);
   formBuilder = inject(FormBuilder);
+  route = inject(ActivatedRoute);
   opet: Pet | null = null;
   petsService: PetsService;
-
+  id: string | null = this.route.snapshot.paramMap.get('id');
   constructor(
-    private readonly service: PetsService,
-    private readonly route: ActivatedRoute
+    private readonly service: PetsService //private readonly route: ActivatedRoute
   ) {
     this.petsService = service;
-    this.pet$ = this.service.GetPetById(
-      Number(route.snapshot.paramMap.get('id'))
-    );
+    this.pet$ = this.service.GetPetById(this.id as string);
 
     this.petForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -46,12 +44,12 @@ export class EditComponent {
 
   deletePet() {
     this.petsService.deletePetById(
-      Number(this.route.snapshot.paramMap.get('id'))
+      String(this.route.snapshot.paramMap.get('id'))
     );
   }
   updatePet() {
     const updatedPet: Pet = {
-      id: Number(this.route.snapshot.paramMap.get('id')),
+      id: String(this.route.snapshot.paramMap.get('id')),
       name: this.petForm.value.name,
       description: this.petForm.value.description,
       age: this.petForm.value.age,

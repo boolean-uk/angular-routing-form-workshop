@@ -3,8 +3,8 @@
     {
       "id": "1",
       "name": "Lola",
-      "description": "A smelly pug dog",
-      "age": 4
+      "description": "A small pug dog!",
+      "age": "7"
     },
     {
       "id": "2",
@@ -19,10 +19,28 @@
       "age": 1
     },
     {
-      "id": 0,
-      "name": "Nigel Sibbert",
-      "description": "Fast car for a boy",
+      "id": "4",
+      "name": "Jeremy Fisher",
+      "description": "Water boatman we found in the pool",
       "age": "4"
+    },
+    {
+      "id": "5",
+      "name": "Moby",
+      "description": "FishFishFish",
+      "age": "4"
+    },
+    {
+      "id": "6",
+      "name": "Oaty",
+      "description": "Sisters Dog",
+      "age": "1"
+    },
+    {
+      "id": null,
+      "name": "Claudius",
+      "description": "neighbours tortoise",
+      "age": "500"
     }
   ]
 }

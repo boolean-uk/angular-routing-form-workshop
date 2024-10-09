@@ -1,6 +1,7 @@
 <table class="table table-dark table-striped">
   <thead>
     <tr>
+      <td>id</td>
       <td>name</td>
       <td>description</td>
       <td>age</td>
@@ -9,6 +10,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of pets$ | async">
+      <td>
+        {{ p.id }}
+      </td>
       <td>
         <a class="badge" routerLink="/pets/{{ p.id }}">{{ p.name }}</a>
       </td>

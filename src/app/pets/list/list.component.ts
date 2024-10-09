@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class ListComponent {
   pets$ = new Observable<Pet[]>();
+
   ngOnInit(): void {
     this.pets$ = this.petsService.getPets();
     this.pets$.subscribe((pets) => {
@@ -20,6 +21,10 @@ export class ListComponent {
   }
 
   constructor(private readonly petsService: PetsService) {}
+
+  deletePet(id: string) {
+    this.petsService.deletePetById(id as string);
+  }
   /*
   getPets() {
     this.pets$ = this.petsService.getPets();

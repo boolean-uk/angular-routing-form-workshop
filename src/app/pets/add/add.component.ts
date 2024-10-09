@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PetsService } from '../pets.service';
 import { Pet } from '../models/pet';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -9,30 +10,33 @@ import { Pet } from '../models/pet';
   styleUrl: './add.component.css',
 })
 export class AddComponent {
+  router = inject(Router);
   petForm: FormGroup;
-  pservice: PetsService;
+  petService: PetsService;
+
   constructor(
     private formBuilder: FormBuilder,
-    private readonly petService: PetsService
+    private readonly service: PetsService
   ) {
     this.petForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       age: [0, Validators.required],
     });
-    this.pservice = this.petService;
+    this.petService = service;
   }
 
   addPet(): void {
     console.log('service addPet');
     const newPet: Pet = {
-      id: 0,
+      id: null,
       name: this.petForm.value.name,
       description: this.petForm.value.description,
       age: this.petForm.value.age,
     };
     console.log(newPet);
-    this.pservice.AddPet(newPet);
+    this.petService.AddPet(newPet);
     this.petForm.reset();
+    this.router.navigate(['pets']);
   }
 }
