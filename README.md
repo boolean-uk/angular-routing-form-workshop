@@ -1,20 +1,22 @@
 # Angular Pet Workshop
 
--How was this built?
+## How was this built?
 
-npm install -g @angular/cli
-ng new first-app --no-standalone
+Project creation:
 
-ng generate service cars
+- `npm install -g @angular/cli`
+- `ng new first-app --no-standalone`
 
-ng generate module cars
-ng generate component cars/add
-ng generate component cars/view
-ng generate component cars/list
-ng generate component cars/edit
+Commands:
 
-ng generate module layout
-ng generate component layout/menu
+- `ng generate service cars`
+- `ng generate module cars`
+- `ng generate component cars/add`
+- `ng generate component cars/view`
+- `ng generate component cars/list`
+- `ng generate component cars/edit`
+- `ng generate module layout`
+- `ng generate component layout/menu`
 
 Order of Build:
 
