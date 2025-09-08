@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
   styleUrl: './add.component.css',
 })
 export class AddComponent {
-  router = inject(Router);
-  petForm: FormGroup;
-  petService: PetsService;
+  private router = inject(Router);
+  private readonly petService: PetsService;
+  public petForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,15 +29,23 @@ export class AddComponent {
     this.router.navigate(['/pets']);
   }
   addPet(): void {
-    console.log('service addPet');
-    const newPet: Pet = {
-      name: this.petForm.value.name,
-      description: this.petForm.value.description,
-      age: this.petForm.value.age,
-    };
-    console.log(newPet);
-    this.petService.AddPet(newPet);
-    this.petForm.reset();
-    this.router.navigate(['pets']);
+    if (this.petForm.valid) {
+      const newPet: Pet = {
+        name: this.petForm.value.name,
+        description: this.petForm.value.description,
+        age: this.petForm.value.age,
+      };
+
+      this.petService.addPet(newPet).subscribe({
+        next: (response) => {
+          console.log('Pet added successfully:', response);
+          this.petForm.reset();
+          this.router.navigate(['/pets']);
+        },
+        error: (err) => {
+          console.error('Failed to add pet:', err);
+        },
+      });
+    }
   }
 }

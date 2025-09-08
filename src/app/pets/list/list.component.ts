@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
 export class ListComponent {
   private readonly router = inject(Router);
 
-  pets$ = new Observable<Pet[]>();
+  public pets$ = new Observable<Pet[]>();
+
+  constructor(private readonly petsService: PetsService) {}
 
   ngOnInit(): void {
     this.pets$ = this.petsService.getPets();
@@ -22,16 +24,22 @@ export class ListComponent {
       });
     });
   }
-
-  constructor(private readonly petsService: PetsService) {}
-
-  deletePet(id: string): void {
-    this.petsService.deletePetById(id as string);
-    this.router.navigate(['/pets']);
-  }
-  /*
-  getPets() {
+  refreshPets(): void {
     this.pets$ = this.petsService.getPets();
   }
-    */
+  deletePet(id: string): void {
+    const confirmed = confirm('Are you sure you want to delete this pet?');
+    if (confirmed) {
+      this.petsService.deletePetById(id).subscribe({
+        next: () => {
+          console.log(`Pet with ID ${id} deleted successfully.`);
+          //this.router.navigate(['/pets']); // this doesn't work as we are already on /pets so we'll call a refresh method instead
+          this.refreshPets();
+        },
+        error: (err) => {
+          console.error('Delete failed:', err);
+        },
+      });
+    }
+  }
 }

@@ -14,6 +14,6 @@ export class ViewComponent {
   route = inject(ActivatedRoute);
   id: string | null = this.route.snapshot.paramMap.get('id');
   constructor(private readonly petsService: PetsService) {
-    this.pet$ = this.petsService.GetPetById(this.id as string);
+    this.pet$ = this.petsService.getPetById(this.id as string);
   }
 }

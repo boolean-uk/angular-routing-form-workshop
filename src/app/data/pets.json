@@ -23,18 +23,6 @@
       "name": "Claudius",
       "description": "neighbours tortoise",
       "age": 400
-    },
-    {
-      "id": "7",
-      "name": "Lucky",
-      "description": "Canary",
-      "age": "100"
-    },
-    {
-      "id": "8",
-      "name": "Stan",
-      "description": "Dog",
-      "age": "4"
     }
   ]
 }

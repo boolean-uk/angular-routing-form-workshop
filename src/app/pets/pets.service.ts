@@ -10,24 +10,20 @@ import { Observable, lastValueFrom } from 'rxjs';
 export class PetsService {
   private http = inject(HttpClient);
 
-  public GetPetById(id: string): Observable<Pet> {
+  public getPetById(id: string): Observable<Pet> {
     return this.http.get<Pet>(`${environment.api}/${id}`);
   }
   public getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(`${environment.api}`);
   }
 
-  public AddPet(p: Pet) {
-    this.http.post(`${environment.api}`, p).subscribe((response) => {
-      console.log('Server response:', response);
-    });
+  public addPet(pet: Pet): Observable<Pet> {
+    return this.http.post<Pet>(`${environment.api}`, pet);
   }
   public updatePet(p: Pet): Observable<Pet> {
     return this.http.put<Pet>(`${environment.api}/${p.id}`, p);
   }
-  public deletePetById(id: string) {
-    this.http.delete(`${environment.api}/${id}`).subscribe((response) => {
-      console.log('Server response:', response);
-    });
+  public deletePetById(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.api}/${id}`);
   }
 }

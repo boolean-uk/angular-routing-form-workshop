@@ -11,14 +11,14 @@ import { PetsService } from '../pets.service';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
-  petForm: FormGroup;
-  pet$!: Observable<Pet>;
-  id: string | null = null;
-
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly formBuilder = inject(FormBuilder);
   private readonly petsService = inject(PetsService);
+
+  public petForm: FormGroup;
+  public pet$!: Observable<Pet>;
+  public id: string | null = null;
 
   constructor() {
     this.petForm = this.formBuilder.group({
@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
     console.log('Editing pet with id:', this.id);
 
     if (this.id) {
-      this.pet$ = this.petsService.GetPetById(this.id);
+      this.pet$ = this.petsService.getPetById(this.id);
       this.pet$.subscribe((pet) => {
         if (pet) {
           this.petForm.patchValue({
