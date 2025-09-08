@@ -1,6 +1,12 @@
 # Angular Pet Workshop
 
--How was this built?
+## Important
+
+- `npm start` runs both the json-server and the angular server
+- or you can start then both from different consoles with:
+  - `ng serve`
+  - from the data directory: `json-server --watch pets.json`
+- How was this built?
 
 npm install -g @angular/cli
 ng new first-app --no-standalone
@@ -18,7 +24,6 @@ ng generate component layout/menu
 
 Order of Build:
 
-- run above `ng serve`
 - arrange app-routing.module.ts
 - check all pets AND add pet view
 - create model folder with a pet interface
