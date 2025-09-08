@@ -1,60 +1,69 @@
-import { Component, inject } from '@angular/core';
-import { PetsService } from '../pets.service';
-import { ActivatedRoute, Router } from '@angular/router';
-
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Pet } from '../models/pet';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Pet } from '../models/pet';
+import { PetsService } from '../pets.service';
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrl: './edit.component.css',
+  styleUrls: ['./edit.component.css'],
 })
-export class EditComponent {
-  pet$ = new Observable<Pet>();
+export class EditComponent implements OnInit {
   petForm: FormGroup;
-  router = inject(Router);
-  formBuilder = inject(FormBuilder);
-  route = inject(ActivatedRoute);
-  opet: Pet | null = null;
-  petsService: PetsService;
-  id: string | null = this.route.snapshot.paramMap.get('id');
-  constructor(
-    private readonly service: PetsService //private readonly route: ActivatedRoute
-  ) {
-    this.petsService = service;
-    this.pet$ = this.service.GetPetById(this.id as string);
+  pet$!: Observable<Pet>;
+  id: string | null = null;
 
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly petsService = inject(PetsService);
+
+  constructor() {
     this.petForm = this.formBuilder.group({
       name: ['', Validators.required],
-      age: ['', Validators.required],
+      age: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: ['', Validators.required],
-    });
-    this.pet$.subscribe((pet) => {
-      if (pet) {
-        this.petForm.patchValue({
-          name: pet.name,
-          age: pet.age,
-          description: pet.description,
-        });
-      }
     });
   }
 
-  deletePet() {
-    this.petsService.deletePetById(
-      String(this.route.snapshot.paramMap.get('id'))
-    );
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log('Editing pet with id:', this.id);
+
+    if (this.id) {
+      this.pet$ = this.petsService.GetPetById(this.id);
+      this.pet$.subscribe((pet) => {
+        if (pet) {
+          this.petForm.patchValue({
+            name: pet.name,
+            age: pet.age,
+            description: pet.description,
+          });
+          console.log('found:', pet);
+          console.log('found$', this.pet$);
+        } else {
+          console.error('Pet not found with id:', this.id);
+        }
+      });
+    }
   }
-  updatePet() {
-    const updatedPet: Pet = {
-      id: String(this.route.snapshot.paramMap.get('id')),
-      name: this.petForm.value.name,
-      description: this.petForm.value.description,
-      age: this.petForm.value.age,
-    };
-    this.petsService.updatePet(updatedPet);
-    this.router.navigate(['pets']);
+  cancel(): void {
+    this.router.navigate(['/pets']);
+  }
+  updatePet(): void {
+    if (this.petForm.valid && this.id) {
+      const updatedPet: Pet = {
+        id: this.id,
+        name: this.petForm.value.name,
+        description: this.petForm.value.description,
+        age: Number(this.petForm.value.age),
+      };
+
+      this.petsService.updatePet(updatedPet).subscribe(() => {
+        this.router.navigate(['/pets']);
+      });
+    }
   }
 }

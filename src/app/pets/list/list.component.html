@@ -1,11 +1,11 @@
-<table class="table table-dark table-striped">
+<table class="table table-dark table-striped table-hover">
   <thead>
     <tr>
-      <td>id</td>
-      <td>name</td>
-      <td>description</td>
-      <td>age</td>
-      <td></td>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Age</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,9 +20,17 @@
       <td class="red">{{ p.description }}</td>
       <td>{{ p.age }}</td>
       <td>
-        <a class="btn btn-success" routerLink="/pets/edit/{{ p.id }}">edit</a>
-        <a class="btn btn-danger" routerLink="/pets/delete/{{ p.id }}"
-          >delete</a
+        <a
+          class="btn btn-sm btn-success"
+          routerLink="/pets/edit/{{ p.id }}"
+          title="Edit this pet"
+          >✂️</a
+        >
+        <a
+          class="btn btn-danger btn-sm"
+          (click)="deletePet(p.id!)"
+          title="Delete this pet"
+          >🗑️</a
         >
       </td>
     </tr>

@@ -29,7 +29,6 @@ export class AddComponent {
   addPet(): void {
     console.log('service addPet');
     const newPet: Pet = {
-      id: null,
       name: this.petForm.value.name,
       description: this.petForm.value.description,
       age: this.petForm.value.age,

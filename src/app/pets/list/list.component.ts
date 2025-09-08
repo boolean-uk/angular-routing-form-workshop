@@ -22,7 +22,7 @@ export class ListComponent {
 
   constructor(private readonly petsService: PetsService) {}
 
-  deletePet(id: string) {
+  deletePet(id: string): void {
     this.petsService.deletePetById(id as string);
   }
   /*

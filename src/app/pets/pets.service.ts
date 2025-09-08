@@ -11,7 +11,7 @@ export class PetsService {
   private http = inject(HttpClient);
 
   public GetPetById(id: string): Observable<Pet> {
-    return this.http.get<Pet>(`${environment.api}/1`);
+    return this.http.get<Pet>(`${environment.api}/${id}`);
   }
   public getPets(): Observable<Pet[]> {
     return this.http.get<Pet[]>(`${environment.api}`);
@@ -22,10 +22,8 @@ export class PetsService {
       console.log('Server response:', response);
     });
   }
-  public updatePet(p: Pet): void {
-    this.http.put(`${environment.api}/${p.id}`, p).subscribe((response) => {
-      console.log('Server response:', response);
-    });
+  public updatePet(p: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${environment.api}/${p.id}`, p);
   }
   public deletePetById(id: string) {
     this.http.delete(`${environment.api}/${id}`).subscribe((response) => {
