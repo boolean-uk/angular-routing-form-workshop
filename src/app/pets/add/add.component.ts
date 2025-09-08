@@ -25,7 +25,9 @@ export class AddComponent {
     });
     this.petService = service;
   }
-
+  cancel(): void {
+    this.router.navigate(['/pets']);
+  }
   addPet(): void {
     console.log('service addPet');
     const newPet: Pet = {

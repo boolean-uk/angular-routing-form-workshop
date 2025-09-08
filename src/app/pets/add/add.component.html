@@ -1,33 +1,64 @@
-<div class="row">
-  <h2>Add Pet</h2>
-  <form [formGroup]="petForm" (ngSubmit)="addPet()">
-    <div class="form-group">
-      <label class="" for="name">Name:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="name"
-        formControlName="name"
-      />
-    </div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Add Pet</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="petForm" (ngSubmit)="addPet()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="name"
+                placeholder="Enter pet name"
+              />
+            </div>
 
-    <div class="form-group">
-      <label for="age">Age:</label>
-      <input class="form-control" type="text" id="age" formControlName="age" />
-    </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input
+                type="number"
+                id="age"
+                class="form-control"
+                formControlName="age"
+                placeholder="Enter pet age"
+              />
+            </div>
 
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <input
-        class="form-control"
-        type="text"
-        id="description"
-        formControlName="description"
-      />
-    </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                id="description"
+                class="form-control"
+                formControlName="description"
+                placeholder="Enter pet description"
+              />
+            </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="petForm.invalid">
-      Add Pet
-    </button>
-  </form>
+            <div class="d-flex justify-content-between">
+              <button
+                type="submit"
+                class="btn btn-success"
+                [disabled]="petForm.invalid"
+              >
+                Add Pet
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="cancel()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

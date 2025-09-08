@@ -8,11 +8,7 @@ import { PetsService } from '../pets.service';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: [
-    './edit.component.css',
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'src/styles.css',
-  ],
+  styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
   petForm: FormGroup;
